@@ -3,7 +3,6 @@ class Solution:
         if len(nums) == 1:
             return nums[0]
         nums.sort()
-        print(nums)
         cnt = 1
         max_cnt = 0
         ans = None
