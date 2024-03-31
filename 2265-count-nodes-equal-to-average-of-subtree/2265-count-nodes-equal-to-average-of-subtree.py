@@ -10,7 +10,7 @@ class Solution:
             if not node.left and not node.right:
                 ans = 0
                 ans += 1
-                print("ans: ", ans)
+                #print("ans: ", ans)
                 return node.val, 1, ans
             l_sum = r_sum = l_cnt = r_cnt = l_ans = r_ans = 0
             if node.left:
@@ -20,7 +20,7 @@ class Solution:
             ans = l_ans + r_ans
             if (l_sum+r_sum+node.val)//(l_cnt+r_cnt+1) == node.val:
                 ans += 1
-                print("ans: ", ans)
+                #print("ans: ", ans)
             return l_sum+r_sum+node.val, l_cnt+r_cnt+1, ans
         
         return DFS(root)[2]
