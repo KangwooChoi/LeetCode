@@ -14,7 +14,6 @@ class Solution:
         ans = ''
         while queue:
             val, key = heappop(queue)
-            for _ in range(-val):
-                ans += key
+            ans += key * (-val)
         return ans
 
