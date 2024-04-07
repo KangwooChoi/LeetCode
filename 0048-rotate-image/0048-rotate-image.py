@@ -6,7 +6,6 @@ class Solution:
         rows = len(matrix)
         for i in range(rows//2):
             for j in range(i, rows-i-1):
-                print(f"i({i}), j({j})")
                 temp0 = matrix[i][j]
                 temp1 = matrix[j][rows-i-1]
                 temp2 = matrix[rows-i-1][rows-j-1]
@@ -16,9 +15,3 @@ class Solution:
                 matrix[rows-i-1][rows-j-1] = temp1
                 matrix[rows-j-1][i] = temp2
                 matrix[i][j] = temp3
-
-                print(matrix)
-        
-
-            
-
