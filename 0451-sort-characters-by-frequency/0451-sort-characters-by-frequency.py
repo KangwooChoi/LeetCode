@@ -11,10 +11,10 @@ class Solution:
         for key, val in s_dict.items():
             heappush(queue, [-val, key])
 
-        ans = []
+        ans = ''
         while queue:
             val, key = heappop(queue)
             for _ in range(-val):
-                ans.append(key)
+                ans += key
         return ans
 
