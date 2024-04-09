@@ -6,4 +6,6 @@ class Solution:
                 if nums[i] > nums[j] and ans < (j - i + 1):
                     ans = j - i + 1
                     break
+            if i + ans >= len(nums):
+                break
         return ans
