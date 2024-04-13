@@ -14,9 +14,9 @@ class Solution:
                 forest = [root]
             elif root.val in to_delete:
                 forest = []
-                if root.left.val not in to_delete:
+                if root.left and root.left.val not in to_delete:
                     forest.append(root.left)
-                if root.right.val not in to_delete:
+                if root.right and root.right.val not in to_delete:
                     forest.append(root.right)
                 to_delete.remove(root.val)
         dq = deque()
