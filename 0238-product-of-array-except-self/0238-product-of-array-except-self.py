@@ -9,7 +9,20 @@ class Solution:
             post_prod = recursive(prev_prod, index+1)
             ans[index] = temp_prev * post_prod
             return post_prod*nums[index]
-            
-        ans = [1] * len(nums)
-        recursive(1, 0)
+        zero_cnt = 0
+        prod = 1
+        for i, n in enumerate(nums):
+            if n == 0:
+                if zero_cnt == 1:
+                    return [0] * len(nums)
+                else:
+                    loc = i    
+                    continue
+            prod *= n
+        if zero_cnt == 1:
+            ans = [0] * len(nums)
+            ans[i] = prod
+        else:
+            ans = [1] * len(nums)
+            recursive(1, 0)
         return ans
