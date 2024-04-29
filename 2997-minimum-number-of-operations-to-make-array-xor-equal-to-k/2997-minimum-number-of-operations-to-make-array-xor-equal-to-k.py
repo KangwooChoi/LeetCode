@@ -3,8 +3,6 @@ class Solution:
         final_xor = 0
         for n in nums:
             final_xor = final_xor ^ n
-
-        print(type(bin(final_xor)))
         return bin(final_xor ^ k).count('1')
 #class Solution:
 #    def minOperations(self, nums: List[int], k: int) -> int:
