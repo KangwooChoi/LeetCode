@@ -18,7 +18,7 @@ class Solution:
             return -1
         #print("pos: ", pos, p)
         #print("neg: ", neg, q)
-        while p and q:
+        while True:
             #print("p, q: ", p, q)
             if p == q:
                 return -1*p
