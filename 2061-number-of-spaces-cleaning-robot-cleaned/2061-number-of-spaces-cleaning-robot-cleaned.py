@@ -17,7 +17,7 @@ class Solution:
                     if cnt == 4:
                         return ans
                 elif room[nx][ny] == 2:
-                    if cnt > m*n:
+                    if cnt > min(m, n):
                         return ans
                     x, y = nx, ny
                     cnt += 1
