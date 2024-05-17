@@ -18,5 +18,6 @@ class Solution:
             if node.val == target:
                 if not node.left and not node.right:
                     return True
-        dfs(root)
+        if dfs(root) == True:
+            return
         return root
