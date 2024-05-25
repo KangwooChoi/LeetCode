@@ -10,7 +10,7 @@ class Solution:
                         match.append(word)
                         if m == n:
                             ans.append(' '.join(match))
-                            return
+                            #return
                         else:
                             backtrack(match, remains[m:])
             return
