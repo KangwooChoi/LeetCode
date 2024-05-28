@@ -2,7 +2,7 @@ class Solution:
     def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
         diff = []
         for i in range(len(s)):
-            diff.append(max(ord(s[i])-ord(t[i]), ord(t[i])-ord(s[i])))
+            diff.append(abs(ord(s[i])-ord(t[i])))
         print(diff)
         prev = 0
         ans = 0
