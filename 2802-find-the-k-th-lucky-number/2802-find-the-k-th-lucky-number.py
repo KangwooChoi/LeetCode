@@ -9,6 +9,10 @@ class Solution:
             i += 1
             cnt += 2**i
         left, right = cnt - 2**i, cnt
+        if k == right:
+            return '7'*i
+        elif k == left:
+            return '4'*i
         ans = '4'*i
         loc = 0
         while left <= right:
