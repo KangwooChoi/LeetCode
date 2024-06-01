@@ -9,7 +9,7 @@ class Solution:
                 if locs[i] == len(arrays[i]):
                     return ans
                 comp = max(comp, arrays[i][locs[i]])
-            print("comp: ", comp)
+            #print("comp: ", comp)
             cnt = 0
             for i in range(len(arrays)):
                 if locs[i] == len(arrays[i]):
@@ -22,8 +22,8 @@ class Solution:
                     locs[i] += 1
                     if locs[i] == len(arrays[i]):
                         return ans
-            print("cnt: ", cnt)
-            print("loc: ", locs)
+            #print("cnt: ", cnt)
+            #print("loc: ", locs)
             if cnt == len(arrays):
                 ans.append(comp)
-            print("ans: ", ans)
+            #print("ans: ", ans)
