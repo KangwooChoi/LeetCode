@@ -3,6 +3,10 @@ class Solution:
         from collections import deque
         def find(target):
             left, right = 0, len(flip) - 1
+            if flip[left] > target:
+                return 0
+            if flip[right] < target:
+                return len(flip)
             while left <= right:
                 mid = (left + right) // 2
                 if flip[mid] == target:
