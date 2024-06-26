@@ -11,8 +11,8 @@ class Solution:
             if node is None:
                 return
 
-            array.append(node.val)
             inorder(node.left, array)
+            array.append(node.val)
             inorder(node.right, array)
 
             return
@@ -33,7 +33,7 @@ class Solution:
 
         inorder_list = []
         inorder(root, inorder_list)    
-        inorder_list.sort()
+        #inorder_list.sort()
         #print("inorder_list: ", inorder_list)
 
         return build(inorder_list)
