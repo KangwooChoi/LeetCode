@@ -11,7 +11,10 @@ class Solution:
                     ret = decode(s)
                     ans += ret*mul
                 elif c in '1234567890':
-                    mul = int(c) 
+                    cnt = c
+                    while s[0] in '1234567890':
+                        cnt += s.popleft()
+                    mul = int(cnt) 
                 else:
                     ans += c
             return ans
