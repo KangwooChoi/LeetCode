@@ -6,16 +6,9 @@ class StockSpanner:
     def next(self, price: int) -> int:
         #print(self.stack)
         #print(price)
-        if not self.stack or price < self.stack[-1][0]:
-            self.stack.append([price, 1])
-            return 1
         ans = 1
-        while self.stack:
-            if price >= self.stack[-1][0]:
-                _, plus = self.stack.pop()
-                ans += plus 
-            else:
-                break
+        while self.stack and self.stack[-1][0] <= price:
+            ans += self.stack.pop()[1] 
         self.stack.append([price, ans]) 
         return ans
 
