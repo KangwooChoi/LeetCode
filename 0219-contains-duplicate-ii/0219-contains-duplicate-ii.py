@@ -3,9 +3,10 @@ class Solution:
         counter = defaultdict(int) 
         for i in range(len(nums)):
             if i > k:
-                counter[nums[i-k-1]] -= 1
+                #counter[nums[i-k-1]] -= 1
+                del counter[nums[i-k-1]]
             key = nums[i]
-            if key in counter and counter[key] == 1:
+            if key in counter:
                 return True
             else:
                 counter[key] = 1
