@@ -1,31 +1,18 @@
 class Solution:
     def getAncestors(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-        direct_p = [[] for _ in range(n)]
-        for s, e in edges:
-            direct_p[e].append(s)
-        
-        ans = []
-
+        ans = [[] for _ in range(n)]
+        directChild = [[] for _ in range(n)]
+        for e in edges:
+            directChild[e[0]].append(e[1])
         for i in range(n):
-            ancestors = []
-            visited = set()
-            self.find_children(i, direct_p, visited)
-            for node in range(n):
-                if node == i:
-                    continue
-                if node in visited:
-                    ancestors.append(node)
-            ans.append(ancestors)
-
+            self.dfs(i, i, ans, directChild)
         return ans
-    
-    def find_children(self, curr, p, v):
-        v.add(curr)
-        for neighbour in p[curr]:
-            if neighbour not in v:
-                self.find_children(neighbour, p, v)
 
-
+    def dfs(self, x: int, curr: int, ans: List[List[int]], directChild: List[List[int]]) -> None:
+        for ch in directChild[curr]:
+            if not ans[ch] or ans[ch][-1] != x:
+                ans[ch].append(x)
+                self.dfs(x, ch, ans, directChild)
 
         #direct_p = [[] for _ in range(n)] 
         #ans = [[] for _ in range(n)] 
