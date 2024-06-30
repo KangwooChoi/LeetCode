@@ -1,91 +1,42 @@
 class Trie:
 
     def __init__(self):
-       self.char = None
-       self.children = defaultdict(str)
-       self.cached = defaultdict(str)
-    
+        self.children = {}
+        self.end = {}
+        self.count = 1 
+        
+
     def insert(self, word: str) -> None:
+
         now = self
+
         for c in word:
-            if now.children[c]:
-                now = now.children[c]
+            if c in now.children:
+                now = now.children[c] 
+                now.count += 1
             else:
-                next = Trie()
-                next.char = c
-                now.children[c] = next
-                now = next
-        now.cached[c] = True
-    
+                now.children[c] = Trie()
+                now = now.children[c]
+        now.end[c] = True 
+
     def search(self, word: str) -> bool:
         now = self
         for c in word:
-            if not now.children[c]:
-                return False
-            else:
+            if c in now.children:
                 now = now.children[c]
-        if now.cached[c]:
-            return True
-        else:
-            return False
-            
+            else:
+                return False 
+        return True if c in now.end else False
+
     def startsWith(self, prefix: str) -> bool:
         now = self
         for c in prefix:
-            if not now.children[c]:
+            if c not in now.children:
                 return False
             else:
                 now = now.children[c]
         return True
 
-
-#class Trie:
-#
-#    def __init__(self):
-#        self.level = 0         # root
-#        self.char = None
-#        self.children = defaultdict(str)
-#        self.cached = []
-#
-#    def insert(self, word: str) -> None:
-#        now = self
-#        for i, c in enumerate(word):
-#            if now.children[c]:
-#                now = now.children[c] 
-#                if now.level == len(word):
-#                    now.cached.append(word)
-#            else:
-#                next = Trie()
-#                next.char = c
-#                next.level = i+1
-#                if next.level == len(word):
-#                    next.cached.append(word)
-#                now.children[c] = next
-#                now = next
-#        #now.cached.append(word)
-#        print("insert: ", now.level, now.cached, now.char)
-#
-#    def search(self, word: str) -> bool:
-#        now = self
-#        for i, c in enumerate(word):
-#            if not now.children[c]:
-#                return False
-#            else:
-#                now = now.children[c]
-#                print("search: ", now.level, now.cached, now.char)
-#        if word in now.cached:
-#            return True
-#        else:
-#            return False
-#
-#    def startsWith(self, prefix: str) -> bool:
-#        now = self
-#        for i, c in enumerate(prefix):
-#            if not now.children[c]:
-#                return False
-#            else:
-#                now = now.children[c]
-#        return True
 
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
