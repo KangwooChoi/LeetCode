@@ -13,7 +13,7 @@ class Solution:
             else:
                 dup_check[now.val] += 1
             now = now.next
-        #print(dup_check)
+        print(dup_check)
 
         now = head
         start = None
@@ -30,11 +30,15 @@ class Solution:
         prev = start
         prev.next = None
         while next:
+            print("next.val : ", next.val)
             if dup_check[next.val] == 1:
+                print("no duplicate! ", next.val)
                 prev.next = next
                 prev = next
-                prev.next = None
             next = next.next
+        if prev.next:
+            if dup_check[prev.next.val] != 1:
+                prev.next = None
         #print(prev)
         return start       
 
