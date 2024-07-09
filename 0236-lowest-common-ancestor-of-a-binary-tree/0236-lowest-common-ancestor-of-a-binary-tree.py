@@ -13,19 +13,22 @@ class Solution:
             
             nonlocal ans
 
-            left, right = False, False
+            l0, r0 = False, False
             if node == p:
-                left = True
+                l0 = True
             elif node == q:
-                right = True
+                r0 = True
 
             l1, r1 = preorder(node.left, p, q)
             l2, r2 = preorder(node.right, p, q)
 
-            if (left or l1 or l2) and (right or r1 or r2):
+            left = (l0 or l1 or l2)
+            right = (r0 or r1 or r2)
+
+            if left and right:
                 ans.append(node)
             
-            return (left or l1 or l2), (right or r1 or r2)
+            return left, right
         
         ans = []
         preorder(root, p, q)
