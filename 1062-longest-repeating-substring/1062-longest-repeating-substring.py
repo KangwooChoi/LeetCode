@@ -1,16 +1,15 @@
 class Solution:
     def longestRepeatingSubstring(self, s: str) -> int:
-        seen_subs = set()
         max_length = len(s) - 1
 
         while max_length > 0:
-            seen_subs.clear()
+            seen_subs = defaultdict(int)
             for start in range(len(s) - max_length + 1):
                 end = start
                 curr_sub = s[end:end + max_length]
                 if curr_sub in seen_subs:
                     return max_length
-                seen_subs.add(curr_sub)
+                seen_subs[curr_sub] = 1
             max_length -= 1
         return 0
         #all_subs = defaultdict(int)  
