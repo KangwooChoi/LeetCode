@@ -6,10 +6,21 @@ class Solution:
         if m != n:
             return False
 
-        target.sort()
-        arr.sort()
+        counter = [0] * 1001
+        for val in target:
+            counter[val] += 1
         
-        for i in range(m):
-            if target[i] != arr[i]:
-                return False 
+        for val in arr:
+            if counter[val] == 0:
+                return False
+            else:
+                counter[val] -= 1
         return True
+
+        #target.sort()
+        #arr.sort()
+        #
+        #for i in range(m):
+        #    if target[i] != arr[i]:
+        #        return False 
+        #return True
