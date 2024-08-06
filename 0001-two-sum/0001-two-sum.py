@@ -16,9 +16,18 @@ class Solution:
         #        return [i, hashmap[complement]]
                 
         # One-pass Hash Table: Time O(n), Space O(n)
-        hashmap = {}
+        #hashmap = {}
+        #for i in range(len(nums)):
+        #    complement = target - nums[i]
+        #    if complement in hashmap:
+        #        return [i, hashmap[complement]]
+        #    hashmap[nums[i]] = i
+
+
+        hashmap = defaultdict(int)
         for i in range(len(nums)):
             complement = target - nums[i]
             if complement in hashmap:
-                return [i, hashmap[complement]]
-            hashmap[nums[i]] = i
+                return [hashmap[complement], i]
+            else:
+                hashmap[nums[i]] = i
