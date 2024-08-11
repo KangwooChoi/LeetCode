@@ -25,8 +25,8 @@ public:
         string div = str2;
         while (div.length() > 0) {
 
-            if (checker(str1, div)) {
-                if (checker(str2, div))
+            if (checker(str2, div)) {
+                if (checker(str1, div))
                     return div;
             }
             div.erase(init_cnt--, 1);
