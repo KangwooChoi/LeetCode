@@ -7,7 +7,7 @@
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         def helper(node, arr):
-            if node is None:
+            if not node:
                 return
             if node.left:
                 helper(node.left, arr) 
@@ -15,6 +15,7 @@ class Solution:
                 helper(node.right, arr)
             if node.val:
                 ans.append(node.val)
+            return
         
         ans = []
         helper(root, ans)
