@@ -1,7 +1,6 @@
 class Solution:
     def missingRolls(self, rolls: List[int], mean: int, n: int) -> List[int]:
         target = mean * (len(rolls) + n) - sum(rolls)
-        print(target)
         p, q = target // n, target % n
         ans = []
         if q == 0:
