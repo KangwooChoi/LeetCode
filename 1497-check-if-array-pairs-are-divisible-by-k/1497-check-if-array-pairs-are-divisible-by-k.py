@@ -12,7 +12,3 @@ class Solution:
             return False
         else:
             return True
-        if sum(residue) == 0:
-            return True
-        else:
-            return False
