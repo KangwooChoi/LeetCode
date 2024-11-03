@@ -4,6 +4,6 @@ public:
         if (s.length() != goal.length()) return false;
         string double_s = s + s;
 
-        return double_s.find(goal) < double_s.length();
+        return double_s.find(goal) != std::string::npos;
     }
 };
