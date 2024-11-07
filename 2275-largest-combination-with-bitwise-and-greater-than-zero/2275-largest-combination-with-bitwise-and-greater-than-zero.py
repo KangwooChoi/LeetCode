@@ -6,7 +6,7 @@ class Solution:
                 arr[i] += num % 2
                 num //= 2
                 i += 1
-        bit_arr = [0] * 20
+        bit_arr = [0] * 30
         for cand in candidates:
             counter(cand, bit_arr)
             #print(bit_arr) 
