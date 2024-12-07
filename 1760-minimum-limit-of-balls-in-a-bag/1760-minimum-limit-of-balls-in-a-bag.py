@@ -16,8 +16,8 @@ class Solution:
     def _is_possible(self, max_balls_in_bag, nums, max_operations):
         total_operations = 0
         for num in nums:
-            #if num <= max_balls_in_bag:
-            #    break
+            if num <= max_balls_in_bag:
+                break
             operations = math.ceil(num / max_balls_in_bag) - 1
             total_operations += operations
 
