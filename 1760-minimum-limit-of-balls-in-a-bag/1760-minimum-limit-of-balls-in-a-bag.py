@@ -7,7 +7,6 @@ class Solution:
         ans = nums[0]
         while left < right:
             cnt = 0
-            print(left, mid, right, ans)
             flag = True
             for num in nums:
                 if num <= mid:
