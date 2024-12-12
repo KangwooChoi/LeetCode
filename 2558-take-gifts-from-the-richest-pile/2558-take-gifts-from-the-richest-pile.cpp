@@ -1,45 +1,43 @@
-class Solution {
-public:
-    long long pickGifts(vector<int>& gifts, int k) {
-        // Create a max-heap from the 'gifts' array (using a priority_queue)
-        priority_queue<int> giftsHeap(gifts.begin(), gifts.end());
-
-        // Perform the operation 'k' times
-        for (int i = 0; i < k; i++) {
-            // Get the maximum element from the heap (top element)
-            int maxElement = giftsHeap.top();
-            giftsHeap.pop();
-
-            // Insert the floor of the square root of the maximum element back
-            // into the heap
-            giftsHeap.push(sqrt(maxElement));
-        }
-
-        // Accumulate the sum of the elements in the heap
-        long long numberOfRemainingGifts = 0;
-        while (!giftsHeap.empty()) {
-            numberOfRemainingGifts += giftsHeap.top();
-            giftsHeap.pop();
-        }
-        return numberOfRemainingGifts;
-    }
-};
 //class Solution {
 //public:
 //    long long pickGifts(vector<int>& gifts, int k) {
-//        priority_queue<int> pq;
-//        for (int num : gifts) {
-//            pq.push(num);
-//        }
-//        int temp;
+//        // Create a max-heap from the 'gifts' array (using a priority_queue)
+//        priority_queue<int> giftsHeap(gifts.begin(), gifts.end());
+//
+//        // Perform the operation 'k' times
 //        for (int i = 0; i < k; i++) {
-//            temp = sqrt(pq.pop());
-//            pq.push(temp);
-//        } 
-//        ans = 0;
-//        while (!pq.empty()) {
-//            ans += pq.pop();
+//            // Get the maximum element from the heap (top element)
+//            int maxElement = giftsHeap.top();
+//            giftsHeap.pop();
+//
+//            // Insert the floor of the square root of the maximum element back
+//            // into the heap
+//            giftsHeap.push(sqrt(maxElement));
 //        }
-//        return ans; 
+//
+//        // Accumulate the sum of the elements in the heap
+//        long long numberOfRemainingGifts = 0;
+//        while (!giftsHeap.empty()) {
+//            numberOfRemainingGifts += giftsHeap.top();
+//            giftsHeap.pop();
+//        }
+//        return numberOfRemainingGifts;
 //    }
 //};
+class Solution {
+public:
+    long long pickGifts(vector<int>& gifts, int k) {
+        priority_queue<int> pq(gifts.begin(), gifts.end());
+        for (int i = 0; i < k; i++) {
+            int temp = sqrt(pq.top());
+            pq.pop();
+            pq.push(temp);
+        } 
+        long long ans = 0;
+        while (!pq.empty()) {
+            ans += pq.top();
+            pq.pop();
+        }
+        return ans; 
+    }
+};
