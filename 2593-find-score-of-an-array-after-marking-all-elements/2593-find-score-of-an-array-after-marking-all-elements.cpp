@@ -14,7 +14,6 @@ public:
             pq.pop();
             int val = -curr.first;
             int index = -curr.second;
-            cout << val << index << endl;
             if (marked[index] == false) {
                 marked[index] = true;
                 if (1 <= index) marked[index - 1] = true; 
