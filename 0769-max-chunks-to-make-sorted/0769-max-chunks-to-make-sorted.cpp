@@ -14,7 +14,6 @@ public:
         }
         int ans = 1;
         for (int i = 0; i < n - 1; i++) {
-            cout << minimum[i] << maximum[i] << endl;
             if (minimum[i+1] >= maximum[i]) ans++;
         }
         return ans > n ? n : ans;
