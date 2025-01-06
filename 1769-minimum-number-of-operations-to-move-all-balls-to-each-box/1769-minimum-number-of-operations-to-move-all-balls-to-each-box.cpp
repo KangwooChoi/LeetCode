@@ -6,7 +6,8 @@ public:
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (boxes[j] == '1') {
-                    ans[i] += (j > i) ? j - i : i - j;
+                    //ans[i] += (j > i) ? j - i : i - j;
+                    ans[i] += abs(j-i);
                 }
             }
         }
