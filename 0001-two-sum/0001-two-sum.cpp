@@ -1,14 +1,15 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int> &nums, int target) {
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> hashing;
         for (int i = 0; i < nums.size(); i++) {
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (nums[j] == target - nums[i]) {
-                    return {i, j};
-                }
+            int comp = target - nums[i]; 
+            if (hashing.find(comp) != hashing.end()) {
+                return {i, hashing[comp]};
+            } else {
+                hashing[nums[i]] = i;
             }
         }
-        // Return an empty vector if no solution is found
-        return {};
+        return {}; 
     }
 };
