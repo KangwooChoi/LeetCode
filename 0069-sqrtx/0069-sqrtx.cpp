@@ -14,7 +14,7 @@ public:
             else
                 return pivot;
         }
-        return right;
+        return left;
         //int ans = 1;
         //while (ans*ans <= x) {
         //    ans++;
