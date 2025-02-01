@@ -4,7 +4,7 @@ private:
     vector<int> nums;
 
 public:
-    RandomizedSet() : valToPos{}, nums{} {
+    RandomizedSet() : valToPos(), nums() {
         
     }
     
