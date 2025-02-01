@@ -1,26 +1,18 @@
 class Solution {
 public:
     vector<int> distinctNumbers(vector<int>& nums, int k) {
-        vector<int> ans;
-        map<int,int> m;
+        unordered_map<int,int> um;
+        int n = nums.size();
         for (int i = 0; i < k; i++) {
-            if (m.find(nums[i]) == m.end()) {
-                m[nums[i]] = 1;
-            } else {
-                m[nums[i]]++;
-            }
+            um[nums[i]]++;
         }
-        ans.push_back(m.size());
-        for (int i = k; i < nums.size(); i++){
-            if (m.find(nums[i]) == m.end()) {
-                m[nums[i]] = 1; 
-            } else {
-                m[nums[i]]++;
-            }
-            m[nums[i-k]]--;
-            if (m[nums[i-k]] == 0) m.erase(nums[i-k]);
-            ans.push_back(m.size());
+        vector<int> ans;
+        ans.push_back(um.size());
+        for (int i = 1; i < n - k + 1; i++) {
+            um[nums[i+k-1]]++;
+            if(--um[nums[i-1]]==0) um.erase(nums[i-1]);
+            ans.push_back(um.size());
         }
-        return ans;
+        return ans; 
     }
 };
