@@ -5,27 +5,22 @@ public:
             return 0;
         }
 
-        int i = 1;      // Pointer to iterate through the array
-        int j = 1;      // Pointer to track position for valid elements
-        int count = 1;  // Count of occurrences of the current element
+        int i = 1;     // Pointer for current index in the array
+        int count = 1; // Count of the current element occurrences
 
-        while (i < nums.size()) {
-            if (nums[i] == nums[i - 1]) {
-                count++;
-                if (count > 2) {
-                    i++;
-                    continue;
-                }
+        for (int j = 1; j < nums.size(); j++) {
+            if (nums[j] == nums[j - 1]) {
+                count++; // Increment count for the current element
             } else {
-                count = 1;
+                count = 1; // Reset count for new element
             }
-            nums[j] = nums[i];
-            j++;
-            i++;
+
+            if (count <= 2) {
+                nums[i++] = nums[j]; // Update the array in place
+            }
         }
 
-        nums.resize(j);
-        return j;
+        return i; // Return the new array length
     }
 };
 //class Solution {
