@@ -1,20 +1,12 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if (x < 0) return false;
-        if (x == 0) return true;
-
-        vector<int> digit;
-        while (x > 0) {
-            int remain = x % 10;
-            digit.push_back(remain);
+        if (x < 0 || x%10 == 0 && x != 0) return false; 
+        int revert = 0;
+        while (x > revert) {
+            revert = revert*10 + x%10;
             x /= 10;
         }
-        int n = digit.size();
-        int left = 0, right = n-1;
-        while (left <= right) {
-            if (digit[left++] != digit[right--]) return false;
-        }
-        return true; 
+        return x == revert || x == revert / 10;
     }
 };
