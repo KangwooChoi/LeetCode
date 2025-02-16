@@ -12,34 +12,11 @@
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        vector<int> leftResult;
-        vector<int> rightResult;
-        preLeftRight(root->left, leftResult);
-        preRightLeft(root->right, rightResult);
-        if (leftResult.size() != rightResult.size()) return false;
-        for (int i = 0; i < leftResult.size(); i++) {
-            if (leftResult[i] != rightResult[i]) return false;
-        }
-        return true;
+        return isMirror(root, root); 
     }
-private:
-    void preLeftRight(TreeNode* node, vector<int>& result) {
-        if (node == nullptr) {
-            result.push_back(-101);
-            return;
-        };
-        result.push_back(node->val);
-        preLeftRight(node->left, result);
-        preLeftRight(node->right, result);
-    }
-    void preRightLeft(TreeNode* node, vector<int>& result) {
-        if (node == nullptr) {
-            result.push_back(-101);
-            return;
-        };
-        result.push_back(node->val);
-        preRightLeft(node->right, result);
-        preRightLeft(node->left, result);
-
+    bool isMirror(TreeNode* node1, TreeNode* node2) {
+        if (node1 == nullptr && node2 == nullptr) return true;
+        if (node1 == nullptr || node2 == nullptr) return false;
+        return (node1->val == node2->val) && isMirror(node1->right, node2->left) && isMirror(node1->left, node2->right);
     }
 };
