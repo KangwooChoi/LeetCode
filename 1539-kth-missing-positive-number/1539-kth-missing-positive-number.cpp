@@ -12,7 +12,7 @@ public:
                 curr++;
             } 
         }
-        while (missingArr.empty() || missingArr.size() <= k ) {
+        while (missingArr.empty() || missingArr.size() < k ) {
             missingArr.push_back(curr++);
         } 
         return missingArr[k-1];
