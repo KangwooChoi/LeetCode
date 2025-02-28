@@ -10,32 +10,42 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        vector<TreeNode*> ans;
-        preorder(root, p, q, ans);
-        return ans[0];
+        if (root == nullptr || root == p || root == q) return root;
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        return (left == nullptr) ? right : (right == nullptr) ? left : root;
     }
-private:
-    pair<bool,bool> preorder(TreeNode* node, TreeNode* p, TreeNode* q, vector<TreeNode*>& ans) {
-
-        if (node == nullptr) return {false,false};
-        
-        bool p0 = false, q0 = false;
-        //bool p0 = false, q0 = false, p1 = false, q1 = false, p2 = false, q2 = false;
-        
-        if (node->val == p->val) p0 = true;
-        if (node->val == q->val) q0 = true;
-        
-        auto [p1, q1] = preorder(node->left, p, q, ans);
-        auto [p2, q2] = preorder(node->right, p, q, ans);
-        
-        bool left = p0 || p1 || p2;
-        bool right = q0 || q1 || q2;
-        if (left && right) {
-            ans.push_back(node); 
-        }
-        return {left, right};
-    } 
 };
+
+//class Solution {
+//public:
+//    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+//        vector<TreeNode*> ans;
+//        preorder(root, p, q, ans);
+//        return ans[0];
+//    }
+//private:
+//    pair<bool,bool> preorder(TreeNode* node, TreeNode* p, TreeNode* q, vector<TreeNode*>& ans) {
+//
+//        if (node == nullptr) return {false,false};
+//        
+//        bool p0 = false, q0 = false;
+//        //bool p0 = false, q0 = false, p1 = false, q1 = false, p2 = false, q2 = false;
+//        
+//        if (node->val == p->val) p0 = true;
+//        if (node->val == q->val) q0 = true;
+//        
+//        auto [p1, q1] = preorder(node->left, p, q, ans);
+//        auto [p2, q2] = preorder(node->right, p, q, ans);
+//        
+//        bool left = p0 || p1 || p2;
+//        bool right = q0 || q1 || q2;
+//        if (left && right) {
+//            ans.push_back(node); 
+//        }
+//        return {left, right};
+//    } 
+//};
 //class Solution {
 //public:
 //    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
