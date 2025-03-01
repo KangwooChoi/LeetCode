@@ -4,10 +4,16 @@ public:
         vector<vector<int>> ans;
         sort(intervals.begin(), intervals.end());
         for (auto interval : intervals) {
-            if (ans.empty() || ans.back()[1] < interval[0]) {
+            if (ans.empty()) {
                 ans.push_back(interval);
-            } else {
-                ans.back()[1] = max(ans.back()[1], interval[1]);
+                continue;
+            }
+            if (ans.back()[1] < interval[0]) {
+                ans.push_back(interval);
+                continue;
+            }
+            if (interval[0] <= ans.back()[1] && ans.back()[1] < interval[1]) {
+                ans.back()[1] = interval[1];
             }
         }
         return ans;
