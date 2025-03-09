@@ -8,8 +8,8 @@ public:
             umap[key].push_back(s);
         }
         vector<vector<string>> ans;
-        for (auto p : umap) {
-            ans.push_back(p.second);
+        for (auto content : umap) {
+            ans.push_back(content.second);
         } 
         return ans;
     }
