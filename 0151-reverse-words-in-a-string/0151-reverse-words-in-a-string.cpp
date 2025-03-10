@@ -1,24 +1,22 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        string ans = "";
-        stack<string> stack;
-        string temp = "";
+        stack<string> st;
+        char delimiter = ' ';
+        string word = "";
         for (int i = 0; i < s.length(); i++) {
-            if (s[i] == ' ') {
-                if (temp != "") {
-                    stack.push(temp);
-                    temp = "";
-                }
-            } else {
-                temp += s[i];
+            if (s[i] == delimiter) {
+                if (word.length() != 0) st.push(word);
+                word = "";
+                continue;
             }
-        }
-        if (temp.length() != 0) stack.push(temp);
-        while (!stack.empty()) {
-            ans += stack.top();
-            ans += ' ';
-            stack.pop();
+            word += s[i];
+        } 
+        if (word.length() != 0) st.push(word);
+        string ans = "";
+        while (!st.empty()) {
+            ans += st.top() + ' ';
+            st.pop(); 
         }
         return ans.substr(0,ans.length()-1);
     }
