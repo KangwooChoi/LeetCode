@@ -1,41 +1,31 @@
 class RandomizedSet {
-private:
+public:
     unordered_map<int,int> valToPos;
     vector<int> nums;
 
-public:
     RandomizedSet() : valToPos(), nums() {
         
     }
     
     bool insert(int val) {
-        if (valToPos.find(val) != valToPos.end()) {
-            return false;
-        } else {
-            int index = nums.size();
-            nums.push_back(val);
-            valToPos[val] = index;
-            return true;
-        }
+        if (valToPos.find(val) != valToPos.end()) return false;
+        valToPos[val] = nums.size();
+        nums.push_back(val);
+        return true;
     }
     
     bool remove(int val) {
-        if (valToPos.find(val) == valToPos.end()) {
-            return false;
-        } else {
-            int indexToRemove = valToPos[val];
-            nums[indexToRemove] = nums.back();
-            valToPos[nums.back()] = indexToRemove;
-            nums.pop_back();
-            valToPos.erase(val);
-            return true;
-        }
-        
+        if (valToPos.find(val) == valToPos.end()) return false;
+        int idToRemove = valToPos[val];
+        nums[idToRemove] = nums.back();
+        valToPos[nums.back()] = idToRemove;
+        nums.pop_back();
+        return true; 
     }
     
     int getRandom() {
-        int randIndex = rand() % nums.size();
-        return nums[randIndex];
+        int idx = rand() % nums.size(); 
+        return nums[idx];
     }
 };
 
