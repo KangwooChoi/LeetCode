@@ -12,19 +12,14 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        priority_queue<int> pq;
-        dfs(root, pq);
-        
-        while (--k) {
-            pq.pop();
-        }
-        return -pq.top();
+        vector<int> vals;
+        inorder(root, vals);    
+        return vals[k-1];
     }
-private:
-    void dfs(TreeNode* node, priority_queue<int>& pq) {
+    void inorder(TreeNode* node, vector<int>& res) {
         if (node == nullptr) return;
-        pq.push(-node->val);
-        if (node->left) dfs(node->left, pq);
-        if (node->right) dfs(node->right, pq);
+        inorder(node->left, res);
+        res.push_back(node->val);
+        inorder(node->right, res);
     }
 };
