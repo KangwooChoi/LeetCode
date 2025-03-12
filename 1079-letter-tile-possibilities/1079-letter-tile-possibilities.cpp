@@ -10,7 +10,7 @@ public:
     }
 
 private:
-    void generateSeq(string& tiles, string curr, vector<bool>& used, unordered_set<string>& seq) {
+    void generateSeq(string& tiles, string curr, vector<bool> used, unordered_set<string>& seq) {
         seq.insert(curr);
         for (int pos = 0; pos < tiles.length(); pos++) {
             if (!used[pos]) {
