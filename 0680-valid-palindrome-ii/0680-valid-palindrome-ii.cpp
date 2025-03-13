@@ -3,20 +3,17 @@ public:
     bool validPalindrome(string s) {
         int left = 0, right = s.length()-1;
         while (left < right) {
-            if (s[left] != s[right]) {
-                return (checkPalindrome(s, left, right-1) || checkPalindrome(s, left+1, right));
+            if(s[left] != s[right]) {
+                return (isPalindrome(s, left+1, right) || isPalindrome(s, left, right-1));
             }
-            left++;
-            right--;
-        }   
-        return true;
+            left++, right--;
+        }
+        return true; 
     }
 private:
-    bool checkPalindrome(string s, int left, int right) {
+    bool isPalindrome(string s, int left, int right) {
         while (left < right) {
-            if (s[left] != s[right]) return false;
-            left++;
-            right--;
+            if (s[left++] != s[right--]) return false;
         }
         return true;
     }
