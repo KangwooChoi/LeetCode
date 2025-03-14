@@ -6,7 +6,7 @@ public:
         int ans = 0;
         while (left <= right) {
             int mid = (left + right) / 2;
-            int cnt = 0;
+            long long cnt = 0;
             for (int i = 0; i < candies.size(); i++) {
                 cnt += candies[i] / mid;
             }
