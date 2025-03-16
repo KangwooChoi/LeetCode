@@ -12,19 +12,41 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         vector<int> nodes;
-        ListNode head(0);
-        ListNode* p = &head;
-        for (ListNode* l : lists) {
+        for (auto l : lists) {
             while (l) {
                 nodes.push_back(l->val);
                 l = l->next;
             }
-        } 
+        }
         sort(nodes.begin(), nodes.end());
-        for (int x : nodes){
-            p->next = new ListNode(x);
+        
+        ListNode head(0);
+        ListNode* p = &head;
+
+        for (int i = 0; i < nodes.size(); i++) {
+            p->next = new ListNode(nodes[i]);
             p = p->next;
         }
         return head.next;
     }
 };
+//class Solution {
+//public:
+//    ListNode* mergeKLists(vector<ListNode*>& lists) {
+//        vector<int> nodes;
+//        ListNode head(0);
+//        ListNode* p = &head;
+//        for (ListNode* l : lists) {
+//            while (l) {
+//                nodes.push_back(l->val);
+//                l = l->next;
+//            }
+//        } 
+//        sort(nodes.begin(), nodes.end());
+//        for (int x : nodes){
+//            p->next = new ListNode(x);
+//            p = p->next;
+//        }
+//        return head.next;
+//    }
+//};
