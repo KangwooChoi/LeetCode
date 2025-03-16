@@ -1,5 +1,6 @@
 class MedianFinder {
-    vector<int> store;
+    priority_queue<int> lo;
+    priority_queue<int, vector<int>, greater<int>> hi;
 
 public:
     MedianFinder() {
@@ -7,18 +8,19 @@ public:
     }
     
     void addNum(int num) {
-        // store.push_back(num);     
-        if (store.empty()) {
-            store.push_back(num);
-        } else {
-            store.insert(lower_bound(store.begin(), store.end(), num), num);
+        lo.push(num);     
+        hi.push(lo.top());
+        lo.pop();
+
+        while (lo.size() < hi.size()) {
+            lo.push(hi.top());
+            hi.pop();
         }
     }
     
     double findMedian() {
-        // sort(store.begin(), store.end());
-        int n = store.size();
-        return (n&1 ? store[n/2] : ((double)store[n/2-1]+(double)store[n/2])*0.5); 
+        if (lo.size() == hi.size()) return 1.0 * (lo.top() + hi.top()) / 2;
+        else return lo.top(); 
     }
 };
 
