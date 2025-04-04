@@ -18,9 +18,20 @@ public:
         vector<TreeNode*> route;
         dfs(root, route, 0);    
         if (result.size() > 1) {
-            while (result[0].back() != result[1].back()) {
-                result[0].pop_back();
-                result[1].pop_back();
+            while (maxDepth-- > 0) {
+                int size = result.size();
+                TreeNode* temp = result[0].back();
+                bool flag = true;
+                for (int i = 1; i < size; i++) {
+                    if (temp != result[i].back()) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag == true) return result[0].back();
+                for (int i = 0; i < size; i++) {
+                    result[i].pop_back();
+                }
             }
         }
         return result[0].back(); 
