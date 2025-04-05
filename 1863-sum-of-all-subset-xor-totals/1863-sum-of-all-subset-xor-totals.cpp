@@ -1,12 +1,15 @@
 class Solution {
 public:
     int subsetXORSum(vector<int>& nums) {
-        int result = 0;
-        // Capture each bit that is set in any of the elements
-        for (int num : nums) {
-            result |= num;
-        }
-        // Multiply by the number of subset XOR totals that will have each bit set
-        return result << (nums.size() - 1);
+        return XORSum(nums, 0, 0);    
+    }
+private:
+    int XORSum(vector<int>& nums, int index, int currSum) {
+        if (index == nums.size()) return currSum;
+
+        int withCurrent = XORSum(nums, index+1, currSum^nums[index]);
+        int withoutCurrent = XORSum(nums, index+1, currSum);
+
+        return withCurrent + withoutCurrent;
     }
 };
