@@ -26,7 +26,7 @@ public:
             maxIdx = prev[maxIdx];
         }
 
-        reverse(result.begin(), result.end());
+        //reverse(result.begin(), result.end());
         return result;
     }
 };
