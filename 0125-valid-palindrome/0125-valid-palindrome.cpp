@@ -1,14 +1,14 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string conv = "";
+        vector<char> str;
         for (char c : s) {
-            if (isalpha(c) || isdigit(c)) conv.push_back(tolower(c));
-        } 
-        int left = 0, right = conv.length()-1;
-        while (left < right) { 
-            if (conv[left++] != conv[right--]) return false;
+            if (isalpha(c) || isdigit(c)) str.push_back(tolower(c));
         }
-        return true;
+        int left = 0, right = str.size() - 1;
+        while (left < right) {
+            if (str[left++] != str[right--]) return false;
+        }
+        return true; 
     }
 };
