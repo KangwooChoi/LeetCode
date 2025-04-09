@@ -2,12 +2,12 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) {
         unordered_map<char,char> umap;
-        vector<bool> used(26,false);
+        unordered_map<char,char> reverse;
         for (int i = 0; i < s.length(); i++) {
             if (umap.find(s[i]) == umap.end()) {
-                if (used[t[i]-'a']) return false;
+                if (reverse.find(t[i]) != reverse.end()) return false;
                 umap[s[i]] = t[i];
-                used[t[i]-'a'] = true;
+                reverse[t[i]] = s[i];
             } else {
                 if (t[i] != umap[s[i]]) return false;
             }
