@@ -4,7 +4,8 @@ public:
         int left = 0, right = s.length() - 1;
         while (left < right) {
             if (s[left] != s[right]) return helper(s, left+1, right) || helper(s, left, right-1);
-            left++, right--;
+            left++;
+            right--;
         } 
         return true;
     }
