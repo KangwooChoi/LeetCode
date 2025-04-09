@@ -8,12 +8,12 @@ public:
     
     // Return the dotProduct of two sparse vectors
     int dotProduct(SparseVector& vec) {
-        int ans = 0;
+        int ret = 0;
         vector<int> compare = vec.nums;
         for (int i = 0; i < compare.size(); i++) {
-            ans += this->nums[i] * compare[i]; 
-        }
-        return ans;     
+            ret += nums[i] * compare[i];
+        } 
+        return ret;
     }
 };
 
