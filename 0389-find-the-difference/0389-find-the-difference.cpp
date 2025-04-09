@@ -1,11 +1,24 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        sort(s.begin(), s.end()); 
-        sort(t.begin(), t.end()); 
-        for (int i = 0; i < s.length(); i++) {
-            if (s[i] != t[i]) return t[i];
+        unordered_map<char,int> freq;
+        for (char c : s) {
+            freq[c]++;
         }
-        return t[t.length()-1];
+        for (char c : t) {
+            if (--freq[c] < 0) return c;
+        }
+        return ' ';
     }
 };
+//class Solution {
+//public:
+//    char findTheDifference(string s, string t) {
+//        sort(s.begin(), s.end()); 
+//        sort(t.begin(), t.end()); 
+//        for (int i = 0; i < s.length(); i++) {
+//            if (s[i] != t[i]) return t[i];
+//        }
+//        return t[t.length()-1];
+//    }
+//};
