@@ -1,23 +1,22 @@
 class MovingAverage {
 public:
-    deque<int> dq;
-    int total, limit, n;
-    
+    int limit;
+    queue<int> que;
+    double currSum;
+
     MovingAverage(int size) {
-        limit = size; 
-        total = 0;
-        n = 0;
+        limit = size;     
+        currSum = 0;
     }
     
     double next(int val) {
-        n = min(n+1, limit); 
-        total += val;
-        dq.push_back(val);
-        if (dq.size() > limit) {
-            total -= dq.front();
-            dq.pop_front();
+        currSum += val;
+        que.push(val);     
+        while (que.size() > limit) {
+            currSum -= que.front();
+            que.pop();
         }
-        return (double)total / n;
+        return currSum / que.size();
     }
 };
 
