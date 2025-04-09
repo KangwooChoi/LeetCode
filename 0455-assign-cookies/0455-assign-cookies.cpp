@@ -1,22 +1,22 @@
 class Solution {
 public:
     int findContentChildren(vector<int>& g, vector<int>& s) {
-        priority_queue<int> g_pq;
-        priority_queue<int> s_pq;
-        for (int size : g) {
-            g_pq.push(size);
+        priority_queue<int> greedies;
+        priority_queue<int> cookies;
+        for (int greedy : g) {
+            greedies.push(greedy);
         }
-        for (int size : s) {
-            s_pq.push(size);
+        for (int cookie : s) {
+            cookies.push(cookie);
         }
-        int ans = 0; 
-        while (!g_pq.empty() && !s_pq.empty()) {
-            if (g_pq.top() <= s_pq.top()) {
-                g_pq.pop();
-                s_pq.pop();
+        int ans = 0;
+        while (!greedies.empty() && !cookies.empty()) {
+            if (greedies.top() <= cookies.top()) {
                 ans++;
+                greedies.pop();
+                cookies.pop();
             } else {
-                g_pq.pop();
+                greedies.pop();
             }
         }
         return ans;
