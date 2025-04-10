@@ -1,20 +1,58 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        unordered_map<int,int> umap;
-        umap[0] = 1;
-        int ans = 0;
+        unordered_map<int,int> seen;
+        seen[0] = 1;
         int sum = 0;
+        int ans = 0;
         for (auto num : nums) {
             sum += num;
-            if (umap.find(sum-k) != umap.end()) {
-                ans += umap[sum-k];
+            if (seen.find(sum-k) != seen.end()) {
+                ans += seen[sum-k];
             }
-            umap[sum]++;
+            seen[sum]++;
         }
         return ans;
     }
 };
+//class Solution {
+//public:
+//    int subarraySum(vector<int>& nums, int k) {
+//        int n = nums.size();
+//        vector<vector<int>> dp(n, vector<int>(n));
+//        for (int start = 0; start < n; start++) {
+//            int sum = 0;
+//            for (int end = start; end < n; end++) {
+//                sum += nums[end];
+//                dp[start][end] = sum; 
+//            }
+//        }
+//        int ans = 0;
+//        for (int start = 0; start < n; start++) {
+//            for (int end = start; end < n; end++) {
+//                if (dp[start][end] == k) ans++;
+//            }
+//        }
+//        return ans;
+//    }
+//};
+//class Solution {
+//public:
+//    int subarraySum(vector<int>& nums, int k) {
+//        unordered_map<int,int> umap;
+//        umap[0] = 1;
+//        int ans = 0;
+//        int sum = 0;
+//        for (auto num : nums) {
+//            sum += num;
+//            if (umap.find(sum-k) != umap.end()) {
+//                ans += umap[sum-k];
+//            }
+//            umap[sum]++;
+//        }
+//        return ans;
+//    }
+//};
 //class Solution {
 //public:
 //    int subarraySum(vector<int>& nums, int k) {
