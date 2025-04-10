@@ -2,30 +2,27 @@ class Solution {
 public:
     string minRemoveToMakeValid(string s) {
         stack<int> st;
-        vector<int> valid;
-        string ans = "";
+        unordered_set<int> valids;
         for (int i = 0; i < s.length(); i++) {
             if (s[i] == '(') {
                 st.push(i);
-            }
-            if (s[i] == ')') {
-                if (!st.empty()) {
-                    valid.push_back(st.top());
+            } else if (s[i] == ')') {
+                if(!st.empty()) {
+                    valids.insert(st.top());
                     st.pop();
-                    valid.push_back(i);
+                    valids.insert(i);
                 }
             }
         }
-        sort(valid.begin(), valid.end());
-        int p = 0;
+
+        string ans;
         for (int i = 0; i < s.length(); i++) {
-            if (s[i] == ')' || s[i] == '(') {
-                if (p < valid.size() && i == valid[p]) {
-                    ans.push_back(s[i]);
-                    p++;
-                }
-            } else ans.push_back(s[i]);
+            if (s[i] == '(' || s[i] == ')') {
+                if (valids.find(i) != valids.end()) ans += s[i];
+            } else {
+                ans += s[i];
+            }
         }
-        return ans; 
+        return ans;
     }
 };
