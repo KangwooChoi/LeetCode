@@ -1,25 +1,44 @@
 class Solution {
 public:
     bool validWordAbbreviation(string word, string abbr) {
-        if (abbr.length() > word.length()) return false;
-        int p = 0, abbr_size = 0;
-        for (int i = 0; i < word.size() || i < abbr.size(); ) {
-            string jump = "";
-            while (isdigit(abbr[p])) {
-                jump += abbr[p++];
+        int jump = 0, index = 0;
+        for (int i = 0; i < abbr.size(); i++) {
+            if ((isdigit(abbr[i]))) {
+                if (jump == 0 && (abbr[i] == '0')) return false;
+                jump = jump*10 + (abbr[i] - '0');
+            } else {
+                index += jump;
+                jump = 0;
+                if (abbr[i] != word[index]) return false;
+                index++;
             }
-            if (jump != "") {
-                if (jump[0] == '0') return false;
-                i += stoi(jump);
-                abbr_size += stoi(jump);
-                continue;
-            }
-            if (abbr[p++] != word[i++]) return false; 
-            abbr_size++;
         }
-        return abbr_size == word.length() && p == abbr.length(); 
-    } 
+        index += jump;
+        return index == word.size();
+    }
 };
+//class Solution {
+//public:
+//    bool validWordAbbreviation(string word, string abbr) {
+//        if (abbr.length() > word.length()) return false;
+//        int p = 0, abbr_size = 0;
+//        for (int i = 0; i < word.size() || i < abbr.size(); ) {
+//            string jump = "";
+//            while (isdigit(abbr[p])) {
+//                jump += abbr[p++];
+//            }
+//            if (jump != "") {
+//                if (jump[0] == '0') return false;
+//                i += stoi(jump);
+//                abbr_size += stoi(jump);
+//                continue;
+//            }
+//            if (abbr[p++] != word[i++]) return false; 
+//            abbr_size++;
+//        }
+//        return abbr_size == word.length() && p == abbr.length(); 
+//    } 
+//};
 //class Solution {
 //public:
 //    bool validWordAbbreviation(string word, string abbr) {
