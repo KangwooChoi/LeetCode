@@ -2,7 +2,7 @@ class Solution {
 public:
     int smallestRepunitDivByK(int k) {
         int remainder = 0;
-        for (int i = 1; i <= k; i++) {
+        for (int i = 1; i <= k + 1; i++) {
             remainder = (remainder * 10 + 1) % k;
             if (remainder == 0) return i;
         }
